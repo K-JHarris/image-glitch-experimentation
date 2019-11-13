@@ -7,6 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src="https://i.imgur.com/VS0D97S.jpg"></img>
+        
         <p>Hello Captain! No errors here. Were you surprised?</p>
         <MainContainer/>
       </header>

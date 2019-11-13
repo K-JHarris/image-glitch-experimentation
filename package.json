@@ -6,5 +6,8 @@
   "repository": "https://github.com/K-JHarris/image-glitch-experimentation.git",
   "author": "KhariH - TL Lambda School",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "glitch-canvas": "^1.1.6"
+  }
 }
