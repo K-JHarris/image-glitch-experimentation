@@ -1,0 +1,10 @@
+{
+  "name": "glitchjs",
+  "version": "1",
+  "description": "JS Glitch library experimentation",
+  "main": "index.js",
+  "repository": "https://github.com/K-JHarris/image-glitch-experimentation.git",
+  "author": "KhariH - TL Lambda School",
+  "license": "MIT",
+  "private": false
+}
