@@ -13,50 +13,39 @@ function MainContainer() {
 export default MainContainer;
 
 var imagePath = srcImage;
+//create container reference
+var imgContainerEl = document.getElementById('img-container');
+//set glitch parameters
+var params = {
+	amount:     30,
+	iterations: 10,
+	quality:    30,
+	seed:       25
+};
 
-			var imgContainerEl = document.getElementById( 'img-container' );
-			var canvasContainerEl = document.getElementById( 'canvas-container' );
-			
-			var params = {
-				amount:     35,
-				iterations: 20,
-				quality:    30,
-				seed:       25
-			};
 
-			loadImage( imagePath, function ( img ) {
-				glitch( params )
-					.fromImage( img )
-					.toDataURL()
-					.then( function( dataURL ) {
-						var imageEl = new Image();
-						imageEl.src = dataURL;
-						imgContainerEl.appendChild( imageEl );
-					} );
+//invoke load image function, passing it imagePath as its source and the following function as its callback
+loadImage(imagePath, function(img) {
+    glitch(params) //pass in glitch parameters
+      .fromImage(img) //expects an image from any source, input
+      .toDataURL()//takes no parameters, returns a string with encoded image url
+        //run a function that accepts our encoded image as an argument  
+        .then( function(dataURL) { 
+          var imageEl = new Image(); //functionally the same as document.createElement('img')
+          imageEl.src = dataURL; //set source of newly created image to our encoded url
+          imgContainerEl.appendChild(imageEl); //append image element into its container
+        } );
+  } 
+);
 
-				glitch( params )
-					.fromImage( img )
-					.toImageData()
-					.then( function( imageData ) {
-						var canvasEl = document.createElement( 'canvas' );
-						canvasEl.width = imageData.width;
-						canvasEl.height = imageData.height;
-						canvasEl.style.width = imageData.width + 'px';
-						var ctx = canvasEl.getContext( '2d' );
-						canvasContainerEl.appendChild( canvasEl );
-						ctx.putImageData( imageData, 0, 0 );
-					} );
-			} );
-
-			function loadImage ( src, callback ) {
-				var imageEl = new Image();
-
-				imageEl.onload = function () {
-					callback( imageEl );
-				};
-
-        imageEl.src = src;
-			}
+//create function that creates an image in the DOM, sets its src and passes it to another function in a callback
+function loadImage (src, callback) {
+	var imageEl = new Image();
+  imageEl.src = src;
+	imageEl.onload = function () {
+		callback(imageEl);
+	};
+}
 
 // var image = new Image();
 
